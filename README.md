@@ -4,7 +4,7 @@
 
 ## Description
 
-**go-lazy** is a library to lazily read from underlying readers.
+**go-lazy** is a library that includes a lazy reader that allows delayed opening of a resource until the first read.
 
 # Usage
 
@@ -39,7 +39,7 @@ r, err := gzip.NewReader(io.MultiReader(
 ))
 ```
 
-See [fit](https://godoc.org/github.com/spatialcurrent/go-lazy/pkg/fit) in GoDoc for API documentation and examples.
+See [lazy](https://godoc.org/github.com/spatialcurrent/go-lazy/pkg/lazy) in GoDoc for API documentation.
 
 # Testing
 
