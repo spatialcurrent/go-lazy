@@ -3,7 +3,7 @@ executors:
   base:
     docker:
       - image: circleci/golang:1.13
-    working_directory: /go/src/github.com/spatialcurrent/go-fit
+    working_directory: /go/src/github.com/spatialcurrent/go-lazy
 jobs:
   pre_deps_golang:
     executor: base
