@@ -5,5 +5,5 @@
 //
 // =================================================================
 
-// Package lazy includes a lazy reader that allows delayed opening of a resource until the first read.
+// Package lazy includes a lazy reader and writer that allows delayed opening of a resource.
 package lazy
