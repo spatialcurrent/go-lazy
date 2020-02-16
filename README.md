@@ -4,7 +4,7 @@
 
 ## Description
 
-**go-lazy** is a library that includes a lazy reader that allows delayed opening of a resource until the first read.
+**go-lazy** is a library that includes a lazy reader and writer that allows delayed opening of a resource.  The `LazyReader` can be used to delay opening a file, an using a file descriptor, until the file is actually read.  The `LazyWriterAt` can be used to delay creating a file until the first byte is actually written.
 
 # Usage
 
