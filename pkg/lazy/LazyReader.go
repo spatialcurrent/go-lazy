@@ -32,16 +32,6 @@ func (r *LazyReader) Read(p []byte) (int, error) {
 	return r.reader.Read(p)
 }
 
-func (r *LazyReader) Flush() error {
-	if flusher, ok := r.reader.(interface{ Flush() error }); ok {
-		err := flusher.Flush()
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func (r *LazyReader) Close() error {
 	if closer, ok := r.reader.(interface{ Close() error }); ok {
 		err := closer.Close()
