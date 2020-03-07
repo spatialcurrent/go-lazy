@@ -4,7 +4,7 @@
 
 ## Description
 
-**go-lazy** is a library that includes a lazy reader and writer that allows delayed opening of a resource.  The `LazyReader` can be used to delay opening a file (and using a file descriptor) until the file is actually read.  The `LazyWriterAt` can be used to delay creating a file until the first byte is actually written.
+**go-lazy** is a library that includes a lazy reader and writer that allows delayed opening of a resource.  The `LazyReader` can be used to delay opening a resource until the resource is actually read.  The `LazyWriterAt` can be used to delay creating a resource until the first byte is actually written.  The `LazyFile` can be used to delay opening a file and allocating a file descriptor until it is required.
 
 # Usage
 
@@ -34,7 +34,7 @@ writer := lazy.NewLazyWriterAt(func() (io.WriterAt, error) {
 
 A good use case is for reading multiple gzip files in sequential order.  The gzip reader can automatically read through multiple files.  This approach keeps the number of file descriptors open to 1 at a time while still using an io.MultiReader for convenience.
 
-```
+```go
 r, err := gzip.NewReader(io.MultiReader(
   NewLazyReader(func() (io.Reader, error) {
     return first file
@@ -43,6 +43,17 @@ r, err := gzip.NewReader(io.MultiReader(
     // return second file
   }),
 ))
+```
+
+The LazyFile can also be used to delay opening or stating a file if it is passed to a callback.  LazyFile matches the `os.File` API when possible, but is not a drop in replacement.  The API is identical for `Read`, `Stat`, and `Close` methods, but the `Fd` method now returns the file descriptor with an error if any.
+
+```go
+f := lazy.NewLazyFile(name, os.O_RDONLY, 0)
+err := callback(f)
+if err != nil {
+  return err
+}
+// do something with the file
 ```
 
 Another good use case if for using the [s3manager](https://docs.aws.amazon.com/sdk-for-go/api/service/s3/s3manager) Downloader to concurrently download multiple files.  To avoid many empty files for downloads that haven't started yet, use `LazyWriterAt`.
