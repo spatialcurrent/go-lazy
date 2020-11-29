@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/spatialcurrent/go-lazy/tree/master.svg?style=svg)](https://circleci.com/gh/spatialcurrent/go-lazy/tree/master) [![Go Report Card](https://goreportcard.com/badge/spatialcurrent/go-lazy)](https://goreportcard.com/report/spatialcurrent/go-lazy)  [![GoDoc](https://godoc.org/github.com/spatialcurrent/go-lazy?status.svg)](https://godoc.org/github.com/spatialcurrent/go-lazy) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://github.com/spatialcurrent/go-lazy/blob/master/LICENSE)
+[![CircleCI](https://circleci.com/gh/spatialcurrent/go-lazy/tree/master.svg?style=svg)](https://circleci.com/gh/spatialcurrent/go-lazy/tree/master) [![Go Report Card](https://goreportcard.com/badge/spatialcurrent/go-lazy)](https://goreportcard.com/report/spatialcurrent/go-lazy)  [![PkgGoDev](https://pkg.go.dev/badge/github.com/spatialcurrent/go-lazy)](https://pkg.go.dev/github.com/spatialcurrent/go-lazy) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://github.com/spatialcurrent/go-lazy/blob/master/LICENSE.md)
 
 # go-lazy
 
@@ -78,7 +78,7 @@ _, err = downloader.DownloadWithContext(input.Context, writer, &s3.GetObjectInpu
 })
 ```
 
-See [lazy](https://godoc.org/github.com/spatialcurrent/go-lazy/pkg/lazy) in GoDoc for API documentation.
+See [go.dev](https://pkg.go.dev/github.com/spatialcurrent/go-lazy/) for information on how to use Go API.
 
 # Testing
 
