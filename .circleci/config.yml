@@ -1,10 +1,10 @@
 version: "2.1"
 
 executors:
-  # `main` uses the `cimg/go:1.15` docker image.
+  # `main` uses the `cimg/go:1.16` docker image.
   main:
     docker:
-      - image: cimg/go:1.15
+      - image: cimg/go:1.16
 
 jobs:
 

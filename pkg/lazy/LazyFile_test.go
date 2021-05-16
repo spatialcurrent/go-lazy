@@ -8,7 +8,7 @@
 package lazy
 
 import (
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 
@@ -17,7 +17,7 @@ import (
 
 func TestLazyFile(t *testing.T) {
 	f := NewLazyFile("testdata/doc.txt", os.O_RDONLY, 0)
-	out, err := ioutil.ReadAll(f)
+	out, err := io.ReadAll(f)
 	assert.NoError(t, err)
 	assert.Equal(t, "hello world\n", string(out))
 	fileInfo, err := f.Stat()
