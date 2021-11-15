@@ -4,7 +4,7 @@
 
 ## Description
 
-**go-lazy** is a library that includes a lazy reader and writer that allows delayed opening of a resource.  The `LazyReader` and `LazyReadCloser` can be used to delay opening a resource until the resource is actually read.  The `LazyWriterAt` can be used to delay creating a resource until the first byte is actually written.  The `LazyFile` can be used to delay opening a file and allocating a file descriptor until it is required.
+**go-lazy** is a library that includes a lazy reader and writer that allows delayed opening of a resource.  The `LazyReader` and `LazyReadCloser` can be used to delay opening a resource until the resource is actually read.  The `LazyWriterAt` and `LazyWriteCloser` can be used to delay creating a resource until the first byte is actually written.  The `LazyFile` can be used to delay opening a file and allocating a file descriptor until it is required.
 
 # Usage
 
@@ -29,6 +29,12 @@ return lazy.NewReader(func() (io.Reader, error) {
 ```go
 return lazy.NewReadCloser(func() (io.ReadCloser, error) {
   // open up a file or remote data source and return as a reader.
+})
+```
+
+```go
+writer := lazy.NewLazyWriteCloser(func() (io.WriterAt, error) {
+  // open up a pipe
 })
 ```
 
