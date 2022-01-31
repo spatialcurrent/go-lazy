@@ -30,6 +30,22 @@ func TestLazyReadCloser(t *testing.T) {
 	assert.NoError(t, rc.Close())
 }
 
+func TestLazyReadCloserTwice(t *testing.T) {
+	in := "hello world"
+	rc := NewLazyReadCloser(func() (io.ReadCloser, error) {
+		return io.NopCloser(strings.NewReader(in)), nil
+	})
+	assert.NoError(t, rc.Close()) // calling close before reading any data should return nil
+	out, err := io.ReadAll(rc)
+	assert.NoError(t, err)
+	assert.Equal(t, in, string(out))
+	assert.NoError(t, rc.Close())
+	out, err = io.ReadAll(rc)
+	assert.NoError(t, err)
+	assert.Equal(t, in, string(out))
+	assert.NoError(t, rc.Close())
+}
+
 func TestLazyReadCloserMulti(t *testing.T) {
 	opened := 0
 	r := io.MultiReader(

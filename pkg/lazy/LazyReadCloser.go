@@ -34,6 +34,7 @@ func (r *LazyReadCloser) Read(p []byte) (int, error) {
 
 func (r *LazyReadCloser) Close() error {
 	if r.readCloser != nil {
+		defer func() { r.readCloser = nil }()
 		return r.readCloser.Close()
 	}
 	return nil
